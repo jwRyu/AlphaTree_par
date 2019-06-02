@@ -8,7 +8,7 @@
 
 #define dimg_idx_v(pidx) ((pidx)<<1)
 #define dimg_idx_h(pidx) ((pidx)<<1)+1
-
+//
 #define LEFT_AVAIL(pidx,width)			(((pidx) % (width)) != 0)
 #define RIGHT_AVAIL(pidx,width)			(((pidx) % (width)) != ((width) - 1))
 #define UP_AVAIL(pidx,width)				((pidx) > ((width) - 1))
@@ -45,7 +45,7 @@ class AlphaTree
 	void init_isVisited(uint8 *isVisited);
 	void Flood(Pixel* img);
 	inline void connectPix2Node(uint32* parentAry, uint32 pidx, Pixel pix_val, AlphaNode* pNode, uint32 iNode) const
-	{	
+	{
 		parentAry[pidx] = iNode;
 		pNode->area++;
 		pNode->maxPix = max(pNode->maxPix, pix_val);
