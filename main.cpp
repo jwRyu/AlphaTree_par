@@ -20,7 +20,7 @@ using namespace cv;
 #define OUTIMG_FNAME "C:/Users/jwryu/RUG/2018/AlphaTree/outimg.jpg"
 #define INPUTIMAGE_DIR	"C:/Users/jwryu/Google Drive/RUG/2018/AlphaTree/imgdata/OrientedAlphaTree_test"
 
-#define REPEAT 1	//program repetition for accurate runtime measuring
+#define REPEAT 10	//program repetition for accurate runtime measuring
 
 int main(int argc, char **argv)
 {
