@@ -1,27 +1,35 @@
 #include <cstdio>
 #include <ctime>
-#include <opencv2/opencv.hpp>
-#include <filesystem>
+//#include <opencv2/opencv.hpp>
+//#include <filesystem>
 #include <iostream>
-#include <ctime>
-#include <chrono>
-#include <fstream>
-#include "defines.h"
-#include "allocator.h"
-#include "HQueue.hpp"
-#include "AlphaTree.hpp"
+//#include <ctime>
+//#include <chrono>
+//#include <fstream>
+//#include "defines.h"
+//#include "allocator.h"
+//#include "HQueue.hpp"
+//#include "AlphaTree.hpp"
+#include <fitsio.h>
 
 using namespace std;
-using namespace cv;
+//using namespace cv;
 
 #define DEBUG 0
 
-#define OUTPUT_FNAME "C:/Users/jwryu/RUG/2018/AlphaTree/AlphaTree.dat"
-#define OUTIMG_FNAME "C:/Users/jwryu/RUG/2018/AlphaTree/outimg.jpg"
+#define OUTPUT_FNAME "./AlphaTree.dat"
+#define OUTIMG_FNAME "./outimg.jpg"
 #define INPUTIMAGE_DIR	"C:/Users/jwryu/Google Drive/RUG/2018/AlphaTree/imgdata/OrientedAlphaTree_test"
 
 #define REPEAT 10	//program repetition for accurate runtime measuring
 
+int main(int argc, char **argv)
+{
+//fits_init_cfitsio();
+	return 0;
+}
+
+/*
 int main(int argc, char **argv)
 {
 	AlphaTree tree;
@@ -129,3 +137,4 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+*/
