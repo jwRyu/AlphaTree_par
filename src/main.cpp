@@ -52,6 +52,14 @@ int main(int argc, char *argv[])
     long anaxes[3] = {1,1,1}, bnaxes[3]={1,1,1};
     int64 imgsize;
     double *img, *bpix, value;
+
+	//	uint64 testimg_64[4 * 4] = { 0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42};
+		uint64 testimg_64_1[9 * 9] = { 0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42,
+		0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42,
+	0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42,
+0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42,
+0, 0, 4, 11, 1, 3, 9, 20, 9, 22, 44, 30, 100, 79, 59, 42, 100};
+
 //    uint8 *img8;
 //    uint16 *img16;
 //    uint32 *img32;
@@ -159,7 +167,7 @@ int main(int argc, char *argv[])
 //      afptr->readKey("DATAMAX", &datamax);
 //      cout << "datamax: " << afptr << endl;
 
-      AlphaTreeWrapper *tree;
+      AlphaTree *tree;
 
 /*
       img8 = (uint8*)malloc(imgsize * sizeof(uint8));
@@ -177,14 +185,26 @@ int main(int argc, char *argv[])
 
       cout << anaxes[1] << " x " << anaxes[0] << " x " << anaxes[2] << endl;
 
-      tree = (AlphaTreeWrapper*)malloc(sizeof(AlphaTreeWrapper));
-      tree->BuildAlphaTree(img, (int)anaxes[1], (int)anaxes[0],(int)anaxes[2], (int)4, (int)0);
+      tree = (AlphaTree*)malloc(sizeof(AlphaTree));
+//      tree->BuildAlphaTree(img, (int)anaxes[1], (int)anaxes[0],(int)anaxes[2], (int)4, (int)0);
+//tree->BuildAlphaTree(testimg_64, 4, 4, 1, 4, 1);
+tree->BuildAlphaTree(testimg_64_1, 9, 9, 1, 4, 1);
+//tree->print_tree();
       //void BuildAlphaTree(Pixel *img, Imgidx height_in, Imgidx width_in, Imgidx channel_in, Imgidx connectivity_in, int8 listsz_idx)
       //tree->clear();
-      free(tree);
+			printf("AlphaTree construction complete\n");
+			printf("Initiating area filtering...\n");
+
+			tree->AreaFilter(img, 0.01, 30);
+			//for(int ii = 0; ii < anaxes[1] * anaxes[0]; ii++)
+			//	img[ii] = 0;
+
 
       fits_write_pix(outfptr, TDOUBLE, firstpix, imgsize,
                        img, &status); /* write new values to output image */
+			free(tree);
+
+			//printf("boo\n");
 
       fits_close_file(outfptr, &status);
       free(img);
